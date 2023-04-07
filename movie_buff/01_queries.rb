@@ -20,7 +20,7 @@ def harrison_ford
   #
   # Find the id and title of all movies in which Harrison Ford appeared but not
   # as a lead actor.
-Actor.joins(:movies).select("id,title")
+Movie.joins(:actors).select("movies.id,title").where("actors.name = (?) AND castings.ord != (?)",'Harrison Ford',1)
 end
 
 def biggest_cast
